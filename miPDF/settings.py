@@ -25,6 +25,8 @@ SECRET_KEY = 'django-insecure-4xeg-p(0yjy19rvgbqar6&r+-12q^!7r=_76)o-y_di9*ckqqo
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+# APPEND_SLASH=False
+
 ALLOWED_HOSTS = ["*"]
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
@@ -50,6 +52,7 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
     'api',
     "corsheaders",
+    'drf_spectacular',
 ]
 
 MIDDLEWARE = [
@@ -70,8 +73,15 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.IsAuthenticated',
     ),
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
 }
 
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'miPDF: PDF Microservice API',
+    'DESCRIPTION': 'Convert, merge, and edit PDFs with JWT authentication',
+    'VERSION': '1.0.0',
+    'SERVE_INCLUDE_SCHEMA': False,
+}
 
 ROOT_URLCONF = 'miPDF.urls'
 

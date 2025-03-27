@@ -1,14 +1,13 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-# Create your models here.
 class PDFHistory(models.Model):
     ACTION_CHOICES = [
-        {"convert": "Converted Text to PDF"},
-        {"merge": "Merged PDFs"},
-        {"edit": "Edited PDFs"},
-        {"pdf_to_word": "Converted PDF to Word"},
-        {"word_to_pdf": "Converted Word to PDF"},
+        ('convert', 'Converted Text to PDF'),
+        ('merge', 'Merged PDFs'),
+        ('edit', 'Edited PDF'),
+        ('pdf_to_word', 'Converted PDF to Word'),
+        ('word_to_pdf', 'Converted Word to PDF'),
     ]
 
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -18,4 +17,3 @@ class PDFHistory(models.Model):
 
     def __str__(self):
         return f"{self.user.username} - {self.file_name} ({self.action})"
-
